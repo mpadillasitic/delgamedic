@@ -62,7 +62,7 @@ function Header({ page, navigate, onCta }) {
             background: "#2F4358",
             boxShadow: "0 1px 0 rgba(255,255,255,.4) inset",
           }}>
-            <img src="assets/logo.png" alt="DelgaMedic" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+            <img src="/assets/logo.png" alt="DelgaMedic" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
           </span>
           <span className="brand-name">Delga<span>Medic</span></span>
         </a>
@@ -174,7 +174,7 @@ function Footer({ navigate, onCta }) {
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
                 background: "#2F4358",
               }}>
-                <img src="assets/logo.png" alt="DelgaMedic" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/assets/logo.png" alt="DelgaMedic" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </span>
               <span>Delga<i style={{ color: "var(--accent-soft)" }}>Medic</i></span>
             </div>

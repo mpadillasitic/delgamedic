@@ -35,7 +35,7 @@ function HeroSplit({ titleHtml, h, onCta, navigate }) {
 
         <div className="reveal reveal-delay-2" style={{ position: "relative" }}>
           <div className="img img-warm" style={{ aspectRatio: "4/5", borderRadius: 18 }}>
-            <img src="assets/clinic-reception.png" alt="Recepción DelgaMedic — Dr. Paulo Peinado y Dra. Leslie Heredia" />
+            <img src="/assets/clinic-reception.png" alt="Recepción DelgaMedic — Dr. Paulo Peinado y Dra. Leslie Heredia" />
           </div>
           <div style={{
             position: "absolute", left: -28, bottom: 36, width: 260,
@@ -79,7 +79,7 @@ function HeroCentered({ titleHtml, h, onCta, navigate }) {
           <button className="btn btn-ghost btn-lg" onClick={() => navigate("tratamientos")}>Ver tratamientos</button>
         </div>
         <div className="reveal reveal-delay-3 img" style={{ width: "100%", aspectRatio: "16/8", marginTop: 56, borderRadius: "18px 18px 0 0", overflow: "hidden" }}>
-          <img src="assets/clinic-reception.png" alt="Recepción DelgaMedic" style={{ objectPosition: "center 30%" }} />
+          <img src="/assets/clinic-reception.png" alt="Recepción DelgaMedic" style={{ objectPosition: "center 30%" }} />
         </div>
       </div>
       <div style={{ background: "var(--bg)" }}>
@@ -101,7 +101,7 @@ function HeroEditorial({ titleHtml, h, onCta, navigate }) {
 
         <div style={{ marginTop: 56, display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 56, alignItems: "end" }}>
           <div className="reveal reveal-delay-2 img" style={{ aspectRatio: "16/10", borderRadius: 18 }}>
-            <img src="assets/clinic-reception.png" alt="Recepción DelgaMedic" style={{ objectPosition: "center 25%" }} />
+            <img src="/assets/clinic-reception.png" alt="Recepción DelgaMedic" style={{ objectPosition: "center 25%" }} />
           </div>
           <div className="reveal reveal-delay-3" style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             <p className="lede" style={{ margin: 0 }}>{h.sub}</p>
@@ -171,13 +171,16 @@ function Specialists() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 32 }}>
           {list.map((s, i) => (
             <article key={s.id} className={"reveal reveal-delay-" + (i + 1)} style={{
-              display: "grid",
-              gridTemplateColumns: "minmax(0, 0.9fr) minmax(0, 1fr)",
-              gap: 28,
-              alignItems: "stretch",
+              display: "flex",
+              flexDirection: "row",
+              gap: 24,
+              alignItems: "flex-start",
+              minWidth: 0,
+              overflow: "hidden",
             }}>
               <div style={{
-                position: "relative",
+                width: "42%",
+                flexShrink: 0,
                 aspectRatio: "4/5",
                 borderRadius: 14,
                 overflow: "hidden",
@@ -189,18 +192,18 @@ function Specialists() {
                   <div className="portrait-monogram" style={{ width: "100%", height: "100%" }}>{s.mono}</div>
                 )}
               </div>
-              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 14, minWidth: 0 }}>
+              <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "flex-start", gap: 12, paddingTop: 8 }}>
                 <span className="eyebrow no-rule" style={{ color: "var(--accent)" }}>{s.role}</span>
-                <h3 className="serif" style={{ fontSize: 30, margin: 0, letterSpacing: "-0.018em", lineHeight: 1.1 }}>{s.name}</h3>
+                <h3 className="serif" style={{ fontSize: 26, margin: 0, letterSpacing: "-0.018em", lineHeight: 1.1, overflowWrap: "break-word" }}>{s.name}</h3>
                 {s.sub && (
-                  <p className="serif" style={{ fontStyle: "italic", color: "var(--accent-deep)", fontSize: 16, margin: 0, lineHeight: 1.35 }}>
+                  <p className="serif" style={{ fontStyle: "italic", color: "var(--accent-deep)", fontSize: 15, margin: 0, lineHeight: 1.35 }}>
                     {s.sub}
                   </p>
                 )}
-                <p style={{ fontSize: 13, color: "var(--ink-mute)", margin: "4px 0 0", lineHeight: 1.55, paddingTop: 14, borderTop: "1px solid var(--line-soft)" }}>
+                <p style={{ fontSize: 12.5, color: "var(--ink-mute)", margin: "4px 0 0", lineHeight: 1.55, paddingTop: 12, borderTop: "1px solid var(--line-soft)" }}>
                   {s.credentials}
                 </p>
-                <p style={{ fontSize: 14.5, color: "var(--ink-soft)", margin: 0, lineHeight: 1.6 }}>{s.bio}</p>
+                <p style={{ fontSize: 14, color: "var(--ink-soft)", margin: 0, lineHeight: 1.6 }}>{s.bio}</p>
               </div>
             </article>
           ))}

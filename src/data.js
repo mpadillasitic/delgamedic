@@ -41,7 +41,7 @@ window.DM_DATA = {
       sub: "Especialista en Adelgazamiento y Alta Performance",
       credentials: "Universidad Católica Boliviana · Medicina Interna, Hospital Japonés (SCZ) · Posgrado en Nutrología, IPEMED São Paulo",
       bio: "Su práctica se enfoca en nutrición clínica, optimización metabólica y estrategias de adelgazamiento personalizadas orientadas al bienestar integral.",
-      photo: "assets/dra-heredia.png",
+      photo: "/assets/dra-heredia.png",
       mono: "LH",
     },
     {
@@ -51,7 +51,7 @@ window.DM_DATA = {
       sub: "Especialista en Obesidad y Síndrome Metabólico",
       credentials: "Universidad Católica Boliviana · Endocrinología y Metabología, Universidad de São Paulo (USP) — Hospital das Clínicas",
       bio: "Su enfoque está orientado al diagnóstico y tratamiento de enfermedades metabólicas, obesidad y alteraciones hormonales que impactan directamente en la calidad de vida de sus pacientes.",
-      photo: "assets/dr-peinado.png",
+      photo: "/assets/dr-peinado.png",
       mono: "PP",
     },
   ],
