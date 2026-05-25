@@ -276,13 +276,13 @@ function BookingModal({ open, onClose, preselect }) {
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          width: "100%", maxWidth: 720,
+          width: "100%", maxWidth: 760,
           background: "var(--bg)",
           borderRadius: "var(--radius-xl)",
           overflow: "hidden",
           boxShadow: "var(--shadow-lg)",
           display: "grid",
-          gridTemplateColumns: "minmax(0,1fr) 220px",
+          gridTemplateColumns: "minmax(0,1fr) 260px",
         }}
       >
         <div style={{ padding: "40px 40px 36px" }}>
@@ -381,22 +381,22 @@ function BookingModal({ open, onClose, preselect }) {
         <aside style={{
           background: "linear-gradient(180deg, #2F4358 0%, #1F2D3D 100%)",
           color: "#E8EEF5",
-          padding: "40px 28px",
+          padding: "32px 24px",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
           gap: 24,
+          overflowY: "auto",
         }}>
-          <div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <span className="eyebrow no-rule" style={{ color: "var(--accent-soft)" }}>DelgaMedic</span>
-            <h4 className="serif" style={{ fontSize: 26, margin: "12px 0 14px", lineHeight: 1.15, color: "#fff" }}>
+            <h4 style={{ fontFamily: "var(--serif)", fontWeight: 400, fontSize: 20, margin: 0, lineHeight: 1.25, color: "#fff" }}>
               Tu primera consulta es el inicio de un acompañamiento real.
             </h4>
-            <p style={{ fontSize: 13.5, color: "#B7C2D2", lineHeight: 1.55, margin: 0 }}>
+            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "#B7C2D2", lineHeight: 1.55, margin: 0 }}>
               Evaluación médica integral, antropometría avanzada y plan personalizado.
             </p>
           </div>
-          <div style={{ fontSize: 13, color: "#B7C2D2", borderTop: "1px solid rgba(255,255,255,.12)", paddingTop: 20, display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{ fontFamily: "var(--sans)", fontSize: 13, color: "#B7C2D2", borderTop: "1px solid rgba(255,255,255,.12)", paddingTop: 16, display: "flex", flexDirection: "column", gap: 10, marginTop: "auto" }}>
             <div style={{ display: "flex", gap: 10, alignItems: "center" }}><Icon.Clock size={16} /> 60 min · evaluación</div>
             <div style={{ display: "flex", gap: 10, alignItems: "center" }}><Icon.Pin size={16} /> Zona Equipetrol, SCZ</div>
             <div style={{ display: "flex", gap: 10, alignItems: "center" }}><Icon.Phone size={16} /> {window.DM_DATA.clinic.phone}</div>

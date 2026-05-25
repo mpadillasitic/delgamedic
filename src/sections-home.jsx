@@ -193,17 +193,17 @@ function Specialists() {
                 )}
               </div>
               <div style={{ flex: 1, minWidth: 0, display: "flex", flexDirection: "column", justifyContent: "flex-start", gap: 12, paddingTop: 8 }}>
-                <span className="eyebrow no-rule" style={{ color: "var(--accent)" }}>{s.role}</span>
-                <h3 className="serif" style={{ fontSize: 26, margin: 0, letterSpacing: "-0.018em", lineHeight: 1.1, overflowWrap: "break-word" }}>{s.name}</h3>
+                <span className="eyebrow no-rule" style={{ color: "var(--accent)", fontFamily: "var(--sans)" }}>{s.role}</span>
+                <h3 style={{ fontFamily: "var(--serif)", fontWeight: 400, fontSize: 26, margin: 0, letterSpacing: "-0.018em", lineHeight: 1.1, overflowWrap: "break-word" }}>{s.name}</h3>
                 {s.sub && (
-                  <p className="serif" style={{ fontStyle: "italic", color: "var(--accent-deep)", fontSize: 15, margin: 0, lineHeight: 1.35 }}>
+                  <p style={{ fontFamily: "var(--sans)", color: "var(--accent-deep)", fontSize: 14, fontWeight: 500, margin: 0, lineHeight: 1.35 }}>
                     {s.sub}
                   </p>
                 )}
-                <p style={{ fontSize: 12.5, color: "var(--ink-mute)", margin: "4px 0 0", lineHeight: 1.55, paddingTop: 12, borderTop: "1px solid var(--line-soft)" }}>
+                <p style={{ fontFamily: "var(--sans)", fontSize: 12.5, color: "var(--ink-mute)", margin: "4px 0 0", lineHeight: 1.55, paddingTop: 12, borderTop: "1px solid var(--line-soft)" }}>
                   {s.credentials}
                 </p>
-                <p style={{ fontSize: 14, color: "var(--ink-soft)", margin: 0, lineHeight: 1.6 }}>{s.bio}</p>
+                <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-soft)", margin: 0, lineHeight: 1.6 }}>{s.bio}</p>
               </div>
             </article>
           ))}
