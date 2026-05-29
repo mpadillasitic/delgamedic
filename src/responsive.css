@@ -1,280 +1,333 @@
-/* DelgaMedic — Responsive Mobile Fixes
-   Usa clases semánticas agregadas al JSX para evitar
-   conflictos con inline styles de React.
+/* DelgaMedic — Responsive CSS
+   Define estilos base (desktop) Y mobile para todos los grids.
+   Los inline styles fueron removidos del JSX para estas clases.
    ================================================================ */
 
 /* ═══════════════════════════════════════════════════════════════
-   TABLET (≤ 900px) — ocultar elementos que salen del viewport
+   BASE STYLES (desktop-first)
    ═══════════════════════════════════════════════════════════════ */
-@media (max-width: 900px) {
-  /* Tarjetas flotantes con offset negativo que se salen del viewport */
-  .hero-float-card {
-    display: none !important;
-  }
 
-  /* Imagen del hero: ratio menos alto */
-  .hero-main-img {
-    aspect-ratio: 4/3 !important;
-  }
+/* HERO SPLIT */
+.hero-split-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 64px;
+  align-items: center;
+  min-height: 78vh;
+  padding-bottom: 56px;
+}
+.hero-cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* HERO STATS */
+.hero-stats-grid {
+  margin-top: 24px;
+  padding-top: 40px;
+  padding-bottom: 16px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* SPECIALISTS */
+.specialists-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  margin-bottom: 72px;
+  align-items: end;
+}
+.specialists-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+.specialist-card {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-start;
+  min-width: 0;
+  overflow: hidden;
+}
+.specialist-photo {
+  width: 42%;
+  flex-shrink: 0;
+  aspect-ratio: 4/5;
+  border-radius: 14px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #EFE9DC 0%, #DDD3BE 100%);
+}
+
+/* TREATMENTS */
+.treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+/* BENEFITS */
+.benefits-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 64px;
+  margin-bottom: 64px;
+}
+.benefits-items-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* PROCESS */
+.process-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 64px;
+  margin-bottom: 64px;
+}
+.process-item {
+  display: grid;
+  grid-template-columns: 100px 1fr 1.8fr;
+  gap: 32px;
+  padding: 32px 0;
+  align-items: baseline;
+}
+
+/* TESTIMONIALS */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: center;
+}
+
+/* FINAL CTA */
+.final-cta-grid {
+  background: var(--accent-deep);
+  border-radius: 24px;
+  padding: clamp(48px, 6vw, 88px);
+  color: #E8EEF5;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+/* BLOG */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* PAGES — Treatments page */
+.treatments-page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.treatment-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: center;
+  padding-bottom: 56px;
+}
+.treatment-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+}
+.treatment-tags-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+/* PAGES — About */
+.about-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 80px;
+}
+.about-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.about-values-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+}
+.about-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.about-values-items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* PAGES — Contact */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.contact-bottom-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* PAGES — Blog */
+.blog-article-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 56px;
+  align-items: center;
+  padding: 48px 0;
+}
+.blog-related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  padding-top: 56px;
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   MOBILE (≤ 768px) — colapso general de grids
+   TABLET (≤ 900px)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero-float-card { display: none; }
+  .hero-main-img { aspect-ratio: 4/3; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE (≤ 768px)
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
 
-  /* ── HERO SPLIT ──────────────────────────────────────────────── */
+  /* Hero */
   .hero-split-grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-    min-height: unset !important;
-    padding-bottom: 32px !important;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    min-height: unset;
+    padding-bottom: 32px;
   }
+  .hero-image-col { order: -1; }
+  .hero-cta-row { flex-direction: column; }
+  .hero-cta-row .btn { width: 100%; justify-content: center; }
+  .hero-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
-  /* Botones del hero: columna completa */
-  .hero-cta-row {
-    flex-direction: column !important;
-  }
-  .hero-cta-row .btn {
-    width: 100% !important;
-    justify-content: center !important;
-  }
-
-  /* Columna de imagen: sin posición relativa que genere espacio extra */
-  .hero-image-col {
-    order: -1; /* imagen primero en mobile */
-  }
-
-  /* ── HERO EDITORIAL ──────────────────────────────────────────── */
+  /* Hero editorial */
   .hero-editorial-grid {
     grid-template-columns: 1fr !important;
     gap: 32px !important;
   }
 
-  /* ── HERO STATS ──────────────────────────────────────────────── */
-  .hero-stats-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 20px !important;
-  }
-
-  /* ── SPECIALISTS ─────────────────────────────────────────────── */
+  /* Specialists */
   .specialists-intro-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-    margin-bottom: 40px !important;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
   }
-
   .specialists-cards-grid {
-    grid-template-columns: 1fr !important;
-    gap: 48px !important;
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
-
-  /* Card de médico: fila → columna */
   .specialist-card {
-    flex-direction: column !important;
-    gap: 20px !important;
+    flex-direction: column;
+    gap: 20px;
   }
-
-  /* Foto: de 42% ancho fijo a ancho completo con altura controlada */
   .specialist-photo {
-    width: 100% !important;
-    max-height: 300px !important;
-    aspect-ratio: 3/2 !important;
+    width: 100%;
+    aspect-ratio: 3/2;
+    max-height: 300px;
   }
 
-  /* ── FEATURED TREATMENTS ─────────────────────────────────────── */
-  .treatments-grid {
-    grid-template-columns: 1fr !important;
-  }
+  /* Treatments home */
+  .treatments-grid { grid-template-columns: 1fr; }
 
-  /* ── BENEFITS ────────────────────────────────────────────────── */
-  .benefits-intro-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-    margin-bottom: 32px !important;
-  }
-
-  .benefits-items-grid {
-    grid-template-columns: 1fr !important;
-    border-top: none !important;
-  }
-
-  /* Resetear bordes internos de cada item */
+  /* Benefits */
+  .benefits-intro-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+  .benefits-items-grid { grid-template-columns: 1fr; border-top: none; }
   .benefit-item {
     border-right: none !important;
     border-bottom: 1px solid var(--line) !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
-  .benefit-item:last-child {
-    border-bottom: none !important;
-  }
+  .benefit-item:last-child { border-bottom: none !important; }
 
-  /* ── PROCESS ─────────────────────────────────────────────────── */
-  .process-intro-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
-    margin-bottom: 32px !important;
-  }
+  /* Process */
+  .process-intro-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
+  .process-item { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
 
-  /* Filas del proceso: 3 columnas → 1 columna */
-  .process-item {
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-    padding: 24px 0 !important;
-  }
+  /* Testimonials */
+  .testimonials-grid { grid-template-columns: 1fr; gap: 40px; }
 
-  /* ── TESTIMONIALS ─────────────────────────────────────────────── */
-  .testimonials-grid {
-    grid-template-columns: 1fr !important;
-    gap: 40px !important;
-  }
-
-  /* ── FINAL CTA ───────────────────────────────────────────────── */
+  /* Final CTA */
   .final-cta-grid {
-    grid-template-columns: 1fr !important;
-    gap: 40px !important;
-    padding: 36px 24px !important;
-    border-radius: 16px !important;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 36px 24px;
+    border-radius: 16px;
   }
 
-  /* Botones del CTA final: columna */
-  .final-cta-grid > div:first-child > div[style] {
-    flex-direction: column !important;
-  }
-  .final-cta-grid .btn {
-    width: 100% !important;
-    justify-content: center !important;
-  }
+  /* Blog home */
+  .blog-grid { grid-template-columns: 1fr; }
 
-  /* ── BLOG ────────────────────────────────────────────────────── */
-  .blog-grid {
-    grid-template-columns: 1fr !important;
-  }
+  /* Pages — Treatments */
+  .treatments-page-grid { grid-template-columns: 1fr; }
+  .treatment-hero-grid { grid-template-columns: 1fr; gap: 32px; padding-bottom: 32px; }
+  .treatment-detail-grid { grid-template-columns: 1fr; gap: 32px; }
+  .treatment-tags-grid { grid-template-columns: 1fr 1fr; }
 
-  /* ── HERO CENTERED: botones centrados en columna ─────────────── */
-  .hero-centered-btns {
-    flex-direction: column !important;
-    width: 100% !important;
-  }
+  /* Pages — About */
+  .about-hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-team-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-values-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-faq-grid { grid-template-columns: 1fr; }
+  .about-values-items { grid-template-columns: repeat(2, 1fr); }
 
-  /* ── NAVIGATION MOBILE ───────────────────────────────────────── */
-  .nav-mobile-toggle {
-    display: inline-flex !important;
-  }
+  /* Pages — Contact */
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-bottom-grid { grid-template-columns: 1fr; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+
+  /* Pages — Blog */
+  .blog-article-grid { grid-template-columns: 1fr; gap: 24px; padding: 32px 0; }
+  .blog-related-grid { grid-template-columns: 1fr; padding-top: 32px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SMALL MOBILE (≤ 480px) — ajustes finos
+   SMALL MOBILE (≤ 480px)
    ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
-
-  /* Stats: reducir números grandes */
-  .hero-stats-grid span[style] {
-    font-size: 28px !important;
-  }
-
-  /* Secciones: menos padding vertical */
-  .section {
-    padding: clamp(40px, 10vw, 64px) 0 !important;
-  }
-  .section-tight {
-    padding: clamp(28px, 8vw, 48px) 0 !important;
-  }
-
-  /* Tipografía display: evitar overflow */
-  .display {
-    font-size: clamp(32px, 9vw, 48px) !important;
-    line-height: 1.05 !important;
-  }
-
-  /* Lede: reducir tamaño en pantallas muy pequeñas */
-  .lede {
-    font-size: 16px !important;
-  }
-
-  /* Credentials bar: centrar en muy pequeño */
-  .container > div[style*="space-between"] {
-    justify-content: flex-start !important;
-  }
-
-  /* Foto especialista: altura máxima menor */
-  .specialist-photo {
-    max-height: 220px !important;
-  }
-
-  /* Blog header: quitar botón "Ver todo" en muy pequeño para evitar overflow */
-  .section > .container > div[style*="space-between"][style*="56"] {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 16px !important;
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   PÁGINAS INTERNAS (pages.jsx)
-   ═══════════════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
-
-  /* Treatments page */
-  .treatments-page-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Treatment detail */
-  .treatment-hero-grid,
-  .treatment-detail-grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-  }
-  .treatment-tags-grid {
-    grid-template-columns: 1fr 1fr !important;
-  }
-
-  /* About page */
-  .about-hero-grid,
-  .about-values-grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-  }
-  .about-team-grid {
-    grid-template-columns: 1fr !important;
-    gap: 32px !important;
-  }
-  .about-faq-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .about-values-items {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-
-  /* Contact page */
-  .contact-grid,
-  .contact-bottom-grid {
-    grid-template-columns: 1fr !important;
-    gap: 40px !important;
-  }
-  .form-row {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Blog page */
-  .blog-article-grid {
-    grid-template-columns: 1fr !important;
-    gap: 24px !important;
-    padding: 32px 0 !important;
-  }
-  .blog-related-grid {
-    grid-template-columns: 1fr !important;
-    padding-top: 32px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-values-items {
-    grid-template-columns: 1fr !important;
-  }
-  .treatment-tags-grid {
-    grid-template-columns: 1fr !important;
-  }
+  .hero-stats-grid { gap: 16px; }
+  .specialist-photo { max-height: 220px; }
+  .about-values-items { grid-template-columns: 1fr; }
+  .treatment-tags-grid { grid-template-columns: 1fr; }
+  .final-cta-grid { padding: 28px 16px; }
+  .section { padding: clamp(40px, 10vw, 64px) 0; }
+  .display { font-size: clamp(32px, 9vw, 48px) !important; line-height: 1.05 !important; }
 }
