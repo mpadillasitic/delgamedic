@@ -18,12 +18,12 @@ function Hero({ variant = "split", onCta, navigate }) {
 function HeroSplit({ titleHtml, h, onCta, navigate }) {
   return (
     <section style={{ background: "var(--bg)", paddingTop: 32 }}>
-      <div className="container" style={{ display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 64, alignItems: "center", minHeight: "78vh", paddingBottom: 56 }}>
+      <div className="container hero-split-grid" style={{ display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 64, alignItems: "center", minHeight: "78vh", paddingBottom: 56 }}>
         <div className="reveal" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <span className="eyebrow">{h.eyebrow}</span>
           <h1 className="display" dangerouslySetInnerHTML={{ __html: titleHtml }} />
           <p className="lede" style={{ marginTop: 4 }}>{h.sub}</p>
-          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 8 }}>
+          <div className="hero-cta-row" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 8 }}>
             <button className="btn btn-primary btn-lg" onClick={onCta}>Agendar consulta <Icon.Arrow size={18} className="arrow" /></button>
             <button className="btn btn-ghost btn-lg" onClick={() => navigate("tratamientos")}>Ver tratamientos</button>
           </div>
@@ -33,11 +33,11 @@ function HeroSplit({ titleHtml, h, onCta, navigate }) {
           </div>
         </div>
 
-        <div className="reveal reveal-delay-2" style={{ position: "relative" }}>
-          <div className="img img-warm" style={{ aspectRatio: "4/5", borderRadius: 18 }}>
+        <div className="reveal reveal-delay-2 hero-image-col" style={{ position: "relative" }}>
+          <div className="img img-warm hero-main-img" style={{ aspectRatio: "4/5", borderRadius: 18 }}>
             <img src="/assets/clinic-reception.png" alt="Recepción DelgaMedic — Dr. Paulo Peinado y Dra. Leslie Heredia" />
           </div>
-          <div style={{
+          <div className="hero-float-card" style={{
             position: "absolute", left: -28, bottom: 36, width: 260,
             background: "var(--bg)", padding: 18,
             borderRadius: 14, boxShadow: "var(--shadow-md)",
@@ -51,7 +51,7 @@ function HeroSplit({ titleHtml, h, onCta, navigate }) {
               <div style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.2 }}>Evaluación médica integral · 60 min</div>
             </div>
           </div>
-          <div style={{
+          <div className="hero-float-card" style={{
             position: "absolute", right: -20, top: 40, width: 220,
             background: "var(--bg-warm)", padding: 18,
             borderRadius: 14, fontFamily: "var(--serif)",
@@ -99,7 +99,7 @@ function HeroEditorial({ titleHtml, h, onCta, navigate }) {
         </div>
         <h1 className="reveal reveal-delay-1 display" style={{ fontSize: "clamp(48px, 8vw, 120px)", lineHeight: .98 }} dangerouslySetInnerHTML={{ __html: titleHtml }} />
 
-        <div style={{ marginTop: 56, display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 56, alignItems: "end" }}>
+        <div className="hero-editorial-grid" style={{ marginTop: 56, display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 56, alignItems: "end" }}>
           <div className="reveal reveal-delay-2 img" style={{ aspectRatio: "16/10", borderRadius: 18 }}>
             <img src="/assets/clinic-reception.png" alt="Recepción DelgaMedic" style={{ objectPosition: "center 25%" }} />
           </div>
@@ -119,7 +119,7 @@ function HeroEditorial({ titleHtml, h, onCta, navigate }) {
 
 function HeroStats({ stats }) {
   return (
-    <div className="container reveal" style={{ marginTop: 24, paddingTop: 40, paddingBottom: 16, borderTop: "1px solid var(--line)", display: "grid", gridTemplateColumns: `repeat(${stats.length}, 1fr)`, gap: 24 }}>
+    <div className="container reveal hero-stats-grid" style={{ marginTop: 24, paddingTop: 40, paddingBottom: 16, borderTop: "1px solid var(--line)", display: "grid", gridTemplateColumns: `repeat(${stats.length}, 1fr)`, gap: 24 }}>
       {stats.map((s, i) => (
         <div key={i} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           <span style={{ fontFamily: "var(--serif)", fontSize: 42, lineHeight: 1, letterSpacing: "-0.02em" }}>{s.v}</span>
@@ -161,16 +161,16 @@ function Specialists() {
   return (
     <section className="section" style={{ background: "var(--bg)" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, marginBottom: 72, alignItems: "end" }}>
+        <div className="specialists-intro-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, marginBottom: 72, alignItems: "end" }}>
           <SectionHeader eyebrow="Nuestros especialistas" title="Un equipo médico que <em>te escucha</em>" />
           <p className="lede reveal reveal-delay-1" style={{ margin: 0 }}>
             En DelgaMedic combinamos endocrinología clínica y nutrición especializada para ayudarte a alcanzar un peso saludable, mejorar tu metabolismo y recuperar tu bienestar mediante tratamientos personalizados respaldados por evidencia científica.
           </p>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 32 }}>
+        <div className="specialists-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 32 }}>
           {list.map((s, i) => (
-            <article key={s.id} className={"reveal reveal-delay-" + (i + 1)} style={{
+            <article key={s.id} className={"reveal reveal-delay-" + (i + 1) + " specialist-card"} style={{
               display: "flex",
               flexDirection: "row",
               gap: 24,
@@ -178,7 +178,7 @@ function Specialists() {
               minWidth: 0,
               overflow: "hidden",
             }}>
-              <div style={{
+              <div className="specialist-photo" style={{
                 width: "42%",
                 flexShrink: 0,
                 aspectRatio: "4/5",
@@ -226,7 +226,7 @@ function FeaturedTreatments({ navigate, onTreatment }) {
           <button className="btn btn-ghost reveal" onClick={() => navigate("tratamientos")}>Ver todos los tratamientos <Icon.Arrow size={16} className="arrow" /></button>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 28 }}>
+        <div className="treatments-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 28 }}>
           {list.map((t, i) => (
             <article
               key={t.id}
@@ -273,19 +273,19 @@ function Benefits() {
   return (
     <section className="section" style={{ background: "var(--bg)" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 64, marginBottom: 64 }}>
+        <div className="benefits-intro-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 64, marginBottom: 64 }}>
           <SectionHeader eyebrow="Por qué DelgaMedic" title="Una forma <em>distinta</em> de cuidar tu salud" />
           <p className="lede reveal reveal-delay-1" style={{ margin: 0 }}>
             No vendemos resultados milagrosos. Te ofrecemos algo más valioso: medicina seria, acompañamiento clínico real y un plan que puedes sostener.
           </p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, borderTop: "1px solid var(--line)" }}>
+        <div className="benefits-items-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, borderTop: "1px solid var(--line)" }}>
           {list.map((b, i) => {
             const IconC = Icon[capitalize(b.icon)] || Icon.Heart;
             return (
               <div
                 key={b.title}
-                className={"reveal reveal-delay-" + (Math.min((i % 3) + 1, 4))}
+                className={"reveal reveal-delay-" + (Math.min((i % 3) + 1, 4)) + " benefit-item"}
                 style={{
                   padding: "40px 32px 40px 0",
                   borderBottom: i < list.length - 3 ? "1px solid var(--line)" : "none",
@@ -315,7 +315,7 @@ function Process() {
   return (
     <section className="section" style={{ background: "var(--accent-deep)", color: "#E8EEF5" }}>
       <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 64, marginBottom: 64 }}>
+        <div className="process-intro-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 64, marginBottom: 64 }}>
           <div className="reveal" style={{ display: "flex", flexDirection: "column", gap: 18 }}>
             <span className="eyebrow no-rule" style={{ color: "var(--accent-soft)" }}>Cómo trabajamos</span>
             <h2 className="h1" style={{ margin: 0, color: "#fff", maxWidth: "16ch" }}>
@@ -331,7 +331,7 @@ function Process() {
           {list.map((p, i) => (
             <li
               key={p.n}
-              className={"reveal reveal-delay-" + (Math.min(i + 1, 4))}
+              className={"reveal reveal-delay-" + (Math.min(i + 1, 4)) + " process-item"}
               style={{
                 display: "grid",
                 gridTemplateColumns: "100px 1fr 1.8fr",
@@ -370,7 +370,7 @@ function Testimonials() {
 
   return (
     <section className="section" style={{ background: "var(--bg-warm)" }}>
-      <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "center" }}>
+      <div className="container testimonials-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "center" }}>
         <div className="reveal">
           <span className="eyebrow">Testimonios</span>
           <h2 className="h1" style={{ marginTop: 16, marginBottom: 16 }}>
@@ -567,7 +567,7 @@ function BlogTeaser({ navigate }) {
           <SectionHeader eyebrow="Recursos & artículos" title="Educación médica que <em>vale tu tiempo</em>" />
           <button className="btn btn-ghost reveal" onClick={() => navigate("blog")}>Ver todo el contenido <Icon.Arrow size={16} className="arrow" /></button>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28 }}>
+        <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28 }}>
           {list.map((b, i) => (
             <article
               key={b.title}
@@ -596,7 +596,7 @@ function FinalCTA({ onCta }) {
   const c = window.DM_DATA.clinic;
   return (
     <section className="section" style={{ background: "var(--bg-warm)" }}>
-      <div className="container reveal" style={{
+      <div className="container reveal final-cta-grid" style={{
         background: "var(--accent-deep)",
         borderRadius: 24,
         padding: "clamp(48px, 6vw, 88px)",
