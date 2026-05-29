@@ -18,12 +18,12 @@ function Hero({ variant = "split", onCta, navigate }) {
 function HeroSplit({ titleHtml, h, onCta, navigate }) {
   return (
     <section style={{ background: "var(--bg)", paddingTop: 32 }}>
-      <div className="container hero-split-grid" style={{ display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 64, alignItems: "center", minHeight: "78vh", paddingBottom: 56 }}>
+      <div className="container hero-split-grid">
         <div className="reveal" style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <span className="eyebrow">{h.eyebrow}</span>
           <h1 className="display" dangerouslySetInnerHTML={{ __html: titleHtml }} />
           <p className="lede" style={{ marginTop: 4 }}>{h.sub}</p>
-          <div className="hero-cta-row" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 8 }}>
+          <div className="hero-cta-row">
             <button className="btn btn-primary btn-lg" onClick={onCta}>Agendar consulta <Icon.Arrow size={18} className="arrow" /></button>
             <button className="btn btn-ghost btn-lg" onClick={() => navigate("tratamientos")}>Ver tratamientos</button>
           </div>
@@ -119,7 +119,7 @@ function HeroEditorial({ titleHtml, h, onCta, navigate }) {
 
 function HeroStats({ stats }) {
   return (
-    <div className="container reveal hero-stats-grid" style={{ marginTop: 24, paddingTop: 40, paddingBottom: 16, borderTop: "1px solid var(--line)", display: "grid", gridTemplateColumns: `repeat(${stats.length}, 1fr)`, gap: 24 }}>
+    <div className="container reveal hero-stats-grid">
       {stats.map((s, i) => (
         <div key={i} style={{ display: "flex", flexDirection: "column", gap: 6 }}>
           <span style={{ fontFamily: "var(--serif)", fontSize: 42, lineHeight: 1, letterSpacing: "-0.02em" }}>{s.v}</span>
@@ -161,31 +161,17 @@ function Specialists() {
   return (
     <section className="section" style={{ background: "var(--bg)" }}>
       <div className="container">
-        <div className="specialists-intro-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, marginBottom: 72, alignItems: "end" }}>
+        <div className="specialists-intro-grid">
           <SectionHeader eyebrow="Nuestros especialistas" title="Un equipo médico que <em>te escucha</em>" />
           <p className="lede reveal reveal-delay-1" style={{ margin: 0 }}>
             En DelgaMedic combinamos endocrinología clínica y nutrición especializada para ayudarte a alcanzar un peso saludable, mejorar tu metabolismo y recuperar tu bienestar mediante tratamientos personalizados respaldados por evidencia científica.
           </p>
         </div>
 
-        <div className="specialists-cards-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 32 }}>
+        <div className="specialists-cards-grid">
           {list.map((s, i) => (
-            <article key={s.id} className={"reveal reveal-delay-" + (i + 1) + " specialist-card"} style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: 24,
-              alignItems: "flex-start",
-              minWidth: 0,
-              overflow: "hidden",
-            }}>
-              <div className="specialist-photo" style={{
-                width: "42%",
-                flexShrink: 0,
-                aspectRatio: "4/5",
-                borderRadius: 14,
-                overflow: "hidden",
-                background: "linear-gradient(180deg, #EFE9DC 0%, #DDD3BE 100%)",
-              }}>
+            <article key={s.id} className={"reveal reveal-delay-" + (i + 1) + " specialist-card"}>
+              <div className="specialist-photo">
                 {s.photo ? (
                   <img src={s.photo} alt={s.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center", display: "block" }} />
                 ) : (
@@ -226,7 +212,7 @@ function FeaturedTreatments({ navigate, onTreatment }) {
           <button className="btn btn-ghost reveal" onClick={() => navigate("tratamientos")}>Ver todos los tratamientos <Icon.Arrow size={16} className="arrow" /></button>
         </div>
 
-        <div className="treatments-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 28 }}>
+        <div className="treatments-grid">
           {list.map((t, i) => (
             <article
               key={t.id}
@@ -273,13 +259,13 @@ function Benefits() {
   return (
     <section className="section" style={{ background: "var(--bg)" }}>
       <div className="container">
-        <div className="benefits-intro-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 64, marginBottom: 64 }}>
+        <div className="benefits-intro-grid">
           <SectionHeader eyebrow="Por qué DelgaMedic" title="Una forma <em>distinta</em> de cuidar tu salud" />
           <p className="lede reveal reveal-delay-1" style={{ margin: 0 }}>
             No vendemos resultados milagrosos. Te ofrecemos algo más valioso: medicina seria, acompañamiento clínico real y un plan que puedes sostener.
           </p>
         </div>
-        <div className="benefits-items-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 0, borderTop: "1px solid var(--line)" }}>
+        <div className="benefits-items-grid">
           {list.map((b, i) => {
             const IconC = Icon[capitalize(b.icon)] || Icon.Heart;
             return (
@@ -315,7 +301,7 @@ function Process() {
   return (
     <section className="section" style={{ background: "var(--accent-deep)", color: "#E8EEF5" }}>
       <div className="container">
-        <div className="process-intro-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 64, marginBottom: 64 }}>
+        <div className="process-intro-grid">
           <div className="reveal" style={{ display: "flex", flexDirection: "column", gap: 18 }}>
             <span className="eyebrow no-rule" style={{ color: "var(--accent-soft)" }}>Cómo trabajamos</span>
             <h2 className="h1" style={{ margin: 0, color: "#fff", maxWidth: "16ch" }}>
@@ -333,13 +319,8 @@ function Process() {
               key={p.n}
               className={"reveal reveal-delay-" + (Math.min(i + 1, 4)) + " process-item"}
               style={{
-                display: "grid",
-                gridTemplateColumns: "100px 1fr 1.8fr",
-                gap: 32,
-                padding: "32px 0",
                 borderTop: "1px solid rgba(255,255,255,.12)",
                 borderBottom: i === list.length - 1 ? "1px solid rgba(255,255,255,.12)" : "none",
-                alignItems: "baseline",
               }}
             >
               <span style={{ fontFamily: "var(--serif)", fontStyle: "italic", color: "var(--accent-soft)", fontSize: 22 }}>{p.n}</span>
@@ -370,7 +351,7 @@ function Testimonials() {
 
   return (
     <section className="section" style={{ background: "var(--bg-warm)" }}>
-      <div className="container testimonials-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80, alignItems: "center" }}>
+      <div className="container testimonials-grid">
         <div className="reveal">
           <span className="eyebrow">Testimonios</span>
           <h2 className="h1" style={{ marginTop: 16, marginBottom: 16 }}>
@@ -567,7 +548,7 @@ function BlogTeaser({ navigate }) {
           <SectionHeader eyebrow="Recursos & artículos" title="Educación médica que <em>vale tu tiempo</em>" />
           <button className="btn btn-ghost reveal" onClick={() => navigate("blog")}>Ver todo el contenido <Icon.Arrow size={16} className="arrow" /></button>
         </div>
-        <div className="blog-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28 }}>
+        <div className="blog-grid">
           {list.map((b, i) => (
             <article
               key={b.title}
@@ -597,14 +578,6 @@ function FinalCTA({ onCta }) {
   return (
     <section className="section" style={{ background: "var(--bg-warm)" }}>
       <div className="container reveal final-cta-grid" style={{
-        background: "var(--accent-deep)",
-        borderRadius: 24,
-        padding: "clamp(48px, 6vw, 88px)",
-        color: "#E8EEF5",
-        display: "grid",
-        gridTemplateColumns: "1.2fr 1fr",
-        gap: 56,
-        alignItems: "center",
         backgroundImage: "radial-gradient(80% 80% at 100% 0%, rgba(184,196,210,.18) 0%, transparent 60%)",
       }}>
         <div>
