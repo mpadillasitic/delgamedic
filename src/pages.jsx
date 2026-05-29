@@ -49,7 +49,7 @@ function TreatmentsPage({ navigate, onCta, onTreatment }) {
       </section>
 
       <section style={{ background: "var(--bg)", paddingBottom: 96 }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28 }}>
+        <div className="container treatments-page-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28 }}>
           {filtered.map((t, i) => (
             <article
               key={t.id}
@@ -109,7 +109,7 @@ function TreatmentDetailPage({ slug, navigate, onCta, onTreatment }) {
             <span style={{ color: "var(--ink)" }}>{t.name}</span>
           </nav>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 64, alignItems: "center", paddingBottom: 56 }}>
+          <div className="treatment-hero-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 64, alignItems: "center", paddingBottom: 56 }}>
             <div className="reveal" style={{ display: "flex", flexDirection: "column", gap: 22 }}>
               <span className="eyebrow">{t.eyebrow}</span>
               <h1 className="display" style={{ fontSize: "clamp(40px, 5vw, 64px)" }}>{t.name}</h1>
@@ -131,7 +131,7 @@ function TreatmentDetailPage({ slug, navigate, onCta, onTreatment }) {
       </section>
 
       <section className="section" style={{ background: "var(--bg-warm)" }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80 }}>
+        <div className="container treatment-detail-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 80 }}>
           <div className="reveal" style={{ position: "sticky", top: 120, alignSelf: "start" }}>
             <span className="eyebrow">En qué consiste</span>
             <h2 className="h2" style={{ margin: "16px 0 16px" }}>
@@ -157,7 +157,7 @@ function TreatmentDetailPage({ slug, navigate, onCta, onTreatment }) {
 
             <div className="reveal">
               <h3 className="serif" style={{ fontSize: 22, margin: "0 0 20px" }}>¿Para quién es este programa?</h3>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
+              <div className="treatment-tags-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
                 {t.who.map((w) => (
                   <div key={w} style={{ background: "var(--bg)", padding: 20, borderRadius: 12, fontSize: 14, lineHeight: 1.45, border: "1px solid var(--line-soft)" }}>
                     {w}
@@ -190,7 +190,7 @@ function TreatmentDetailPage({ slug, navigate, onCta, onTreatment }) {
 
       {/* FAQs */}
       <section className="section" style={{ background: "var(--bg)", borderTop: "1px solid var(--line-soft)" }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 80 }}>
+        <div className="container about-hero-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 80 }}>
           <div className="reveal">
             <span className="eyebrow">Preguntas frecuentes</span>
             <h2 className="h2" style={{ margin: "16px 0 16px" }}>Respondemos lo que <em>te preocupa</em></h2>
@@ -229,7 +229,7 @@ function TreatmentDetailPage({ slug, navigate, onCta, onTreatment }) {
             <h2 className="h2 reveal" style={{ margin: 0 }}>Otros programas que <em>podrían interesarte</em></h2>
             <button className="btn-link reveal" onClick={() => navigate("tratamientos")}>Ver todos los tratamientos →</button>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
+          <div className="about-team-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
             {related.map((r, i) => (
               <article key={r.id} onClick={() => onTreatment(r.slug)} className={"reveal reveal-delay-" + (i + 1)}
                 style={{ background: "var(--bg)", borderRadius: 16, overflow: "hidden", cursor: "pointer", border: "1px solid var(--line-soft)" }}>
@@ -267,7 +267,7 @@ function AboutPage({ navigate, onCta }) {
 
       {/* Historia */}
       <section className="section" style={{ background: "var(--bg)" }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80 }}>
+        <div className="container about-values-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80 }}>
           <div className="reveal">
             <span className="eyebrow">Nuestra historia</span>
             <h2 className="h2" style={{ margin: "16px 0 0" }}>Cómo nació <em>DelgaMedic</em></h2>
@@ -278,7 +278,7 @@ function AboutPage({ navigate, onCta }) {
 
       {/* Misión / Visión */}
       <section className="section" style={{ background: "var(--bg-warm)" }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28 }}>
+        <div className="container about-faq-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 28 }}>
           <div className="reveal" style={{ background: "var(--bg)", borderRadius: 18, padding: 40, border: "1px solid var(--line-soft)" }}>
             <span className="eyebrow no-rule">Misión</span>
             <p className="serif" style={{ fontSize: 26, margin: "20px 0 0", lineHeight: 1.35, letterSpacing: "-0.012em" }}>{a.mision}</p>
@@ -302,7 +302,7 @@ function AboutPage({ navigate, onCta }) {
               Cuatro principios guían cada consulta, cada plan y cada decisión clínica que tomamos.
             </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, borderTop: "1px solid var(--line)" }}>
+          <div className="about-values-items" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, borderTop: "1px solid var(--line)" }}>
             {a.valores.map((v, i) => (
               <div key={v.title} className={"reveal reveal-delay-" + (i + 1)} style={{
                 padding: "36px 28px 36px 0",
@@ -344,7 +344,7 @@ function ContactPage({ onCta }) {
       </section>
 
       <section style={{ background: "var(--bg)", paddingBottom: 96 }}>
-        <div className="container" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 64, alignItems: "start" }}>
+        <div className="container contact-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 64, alignItems: "start" }}>
           <form
             className="reveal"
             onSubmit={(e) => { e.preventDefault(); setSent(true); }}
@@ -359,11 +359,11 @@ function ContactPage({ onCta }) {
               <>
                 <h3 className="h3" style={{ margin: "0 0 4px" }}>Envíanos un mensaje</h3>
                 <p style={{ margin: "0 0 12px", color: "var(--ink-soft)", fontSize: 14 }}>Te respondemos en menos de 2 horas hábiles.</p>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                   <div className="field"><label>Nombre</label><input required /></div>
                   <div className="field"><label>Apellido</label><input required /></div>
                 </div>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                   <div className="field"><label>Correo</label><input type="email" required /></div>
                   <div className="field"><label>Teléfono</label><input placeholder="+591 ..." /></div>
                 </div>
@@ -486,7 +486,7 @@ function BlogPage({ navigate, onCta }) {
       <section style={{ background: "var(--bg)", paddingBottom: 96 }}>
         <div className="container">
           {/* Feature article */}
-          <article className="reveal" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 56, alignItems: "center", padding: "48px 0", borderBottom: "1px solid var(--line)" }}>
+          <article className="reveal blog-article-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 56, alignItems: "center", padding: "48px 0", borderBottom: "1px solid var(--line)" }}>
             <div className="img" style={{ aspectRatio: "5/4", borderRadius: 18 }}>
               <img src={list[0].img} alt={list[0].title} />
             </div>
@@ -499,7 +499,7 @@ function BlogPage({ navigate, onCta }) {
             </div>
           </article>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28, paddingTop: 56 }}>
+          <div className="blog-related-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28, paddingTop: 56 }}>
             {list.slice(1).concat(list).slice(0, 6).map((b, i) => (
               <article key={i} className={"reveal reveal-delay-" + ((i % 3) + 1)} style={{ display: "flex", flexDirection: "column", gap: 14, cursor: "pointer" }}>
                 <div className="img" style={{ aspectRatio: "5/4", borderRadius: 14 }}>
@@ -526,7 +526,7 @@ function BlogPage({ navigate, onCta }) {
 function PageHero({ eyebrow, title, lede, rightImg }) {
   return (
     <section style={{ background: "var(--bg)", paddingTop: 56, paddingBottom: 72 }}>
-      <div className="container" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 64, alignItems: "end" }}>
+      <div className="container contact-bottom-grid" style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 64, alignItems: "end" }}>
         <div className="reveal" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <span className="eyebrow">{eyebrow}</span>
           <h1 className="display" style={{ fontSize: "clamp(44px, 5.4vw, 80px)" }} dangerouslySetInnerHTML={{ __html: title }} />
