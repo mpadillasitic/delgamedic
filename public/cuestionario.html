@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delgamedic — Revisión de contenido para su sitio web</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #1D9E75;
+  --green-light: #E1F5EE;
+  --green-mid: #9FE1CB;
+  --green-dark: #085041;
+  --green-deep: #0F6E56;
+  --text: #1a1a1a;
+  --text-muted: #6b7280;
+  --text-hint: #9ca3af;
+  --border: rgba(0,0,0,0.10);
+  --border-med: rgba(0,0,0,0.15);
+  --bg: #ffffff;
+  --bg-soft: #f9fafb;
+  --bg-card: #ffffff;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg-soft);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* TOP HEADER */
+.top-header {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 20px;
+  color: var(--green-dark);
+  letter-spacing: -.01em;
+}
+.logo span { color: var(--green); }
+.step-pills {
+  display: flex;
+  gap: 4px;
+}
+.pill {
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background .3s;
+  cursor: pointer;
+}
+.pill.done { background: var(--green-mid); }
+.pill.active { background: var(--green); }
+.step-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* LAYOUT */
+.main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* STEP */
+.step { display: none; }
+.step.active { display: block; animation: fadeUp .35s ease both; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* SECTION HEADER */
+.sec-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--green);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: .4rem;
+}
+.sec-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px;
+  color: var(--text);
+  margin-bottom: .4rem;
+  line-height: 1.2;
+}
+.sec-desc {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  max-width: 580px;
+  line-height: 1.65;
+}
+
+/* PREVIEW MOCKUP */
+.preview-wrap {
+  margin-bottom: 1.75rem;
+}
+.preview-label {
+  font-size: 11px;
+  color: var(--text-hint);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.preview-label::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+.browser {
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 16px rgba(0,0,0,.06);
+}
+.browser-bar {
+  background: #f3f4f6;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-bottom: 1px solid var(--border);
+}
+.bdot { width: 9px; height: 9px; border-radius: 50%; }
+.bdot.r { background: #ff5f57; }
+.bdot.y { background: #febc2e; }
+.bdot.g { background: #28c840; }
+.burl {
+  flex: 1;
+  background: white;
+  border-radius: 5px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 11px;
+  color: var(--text-hint);
+  border: 1px solid var(--border);
+}
+
+/* HIGHLIGHT ZONES */
+.zone {
+  border: 2px dashed var(--green-mid);
+  border-radius: 6px;
+  padding: .4rem .65rem;
+  margin: .35rem 0;
+  position: relative;
+}
+.zone-tag {
+  position: absolute;
+  top: -9px;
+  left: 8px;
+  background: var(--green);
+  color: white;
+  font-size: 9px;
+  font-weight: 500;
+  padding: 1px 8px;
+  border-radius: 8px;
+  letter-spacing: .04em;
+}
+
+/* HERO PREVIEW */
+.hero-mock {
+  background: var(--green-light);
+  padding: 2rem 2rem 1.75rem;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-block;
+  background: var(--green-mid);
+  color: var(--green-dark);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px;
+  color: var(--green-dark);
+  margin-bottom: .5rem;
+  line-height: 1.35;
+}
+.hero-sub {
+  font-size: 12px;
+  color: var(--green-deep);
+  margin-bottom: 1rem;
+  line-height: 1.55;
+}
+.hero-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+.hck {
+  font-size: 11px;
+  color: var(--green-dark);
+  background: rgba(157,225,203,.5);
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+.hero-btns { display: flex; gap: 8px; justify-content: center; }
+.btn-primary {
+  background: var(--green);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: default;
+}
+.btn-secondary {
+  background: transparent;
+  border: 1.5px solid var(--green);
+  color: var(--green);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  cursor: default;
+}
+
+/* TRUST */
+.trust-mock { padding: 1.5rem 2rem; }
+.mock-section-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: .35rem;
+}
+.mock-section-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.trust-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.trust-item {
+  background: var(--bg-soft);
+  border-radius: 8px;
+  padding: .6rem .85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.trust-icon {
+  width: 22px;
+  height: 22px;
+  background: var(--green-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.trust-icon svg { width: 12px; height: 12px; stroke: var(--green); fill: none; stroke-width: 2; }
+
+/* PROBLEMS */
+.prob-mock { padding: 1.5rem 2rem; }
+.prob-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+.prob-card {
+  background: var(--bg-soft);
+  border-radius: 8px;
+  padding: .65rem .75rem;
+  border: 1px solid var(--border);
+}
+.prob-card strong {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text);
+  display: block;
+  margin-bottom: 3px;
+}
+.prob-card p { font-size: 10.5px; color: var(--text-muted); line-height: 1.4; }
+
+/* METHOD */
+.method-mock { padding: 1.5rem 2rem; }
+.method-steps { display: flex; flex-direction: column; gap: 10px; }
+.m-step { display: flex; gap: 12px; align-items: flex-start; }
+.m-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.m-step div strong { font-size: 12px; font-weight: 500; color: var(--text); display: block; margin-bottom: 2px; }
+.m-step div p { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+/* SERVICES */
+.svc-mock { padding: 1.5rem 2rem; }
+.svc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.svc-card {
+  background: var(--bg-soft);
+  border-radius: 8px;
+  padding: .7rem .85rem;
+  border: 1px solid var(--border);
+}
+.svc-card strong { font-size: 12px; font-weight: 500; color: var(--text); display: block; margin-bottom: 3px; }
+.svc-card p { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
+
+/* TEAM */
+.team-mock { padding: 1.5rem 2rem; display: flex; flex-direction: column; gap: 12px; }
+.doc-card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--bg-soft);
+  border-radius: 10px;
+  padding: .85rem 1rem;
+  border: 1px solid var(--border);
+}
+.doc-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--green-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--green-dark);
+  flex-shrink: 0;
+}
+.doc-info strong { font-size: 13px; font-weight: 500; color: var(--text); display: block; }
+.doc-info .spec { font-size: 11px; color: var(--green); display: block; margin: .15rem 0; }
+.doc-info p { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
+
+/* FAQ */
+.faq-mock { padding: 1.25rem 2rem; }
+.faq-item { border-bottom: 1px solid var(--border); padding: .7rem 0; }
+.faq-item strong { font-size: 12px; font-weight: 500; color: var(--text); display: block; margin-bottom: 3px; }
+.faq-item p { font-size: 11px; color: var(--text-muted); line-height: 1.45; }
+
+/* CTA */
+.cta-mock { background: var(--green-light); padding: 2rem; text-align: center; }
+.cta-mock h3 { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--green-dark); margin-bottom: .5rem; }
+.cta-mock p { font-size: 12px; color: var(--green-deep); margin-bottom: 1rem; line-height: 1.55; }
+
+/* CONTACT */
+.contact-mock {
+  padding: 1.25rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.contact-item strong {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 3px;
+}
+.contact-item strong svg { width: 13px; height: 13px; stroke: var(--green); fill: none; stroke-width: 2; }
+.contact-item p { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+
+/* FORM ELEMENTS */
+.card {
+  background: white;
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+.card-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 11px;
+}
+.fg { margin-bottom: 1.1rem; }
+.fg:last-child { margin-bottom: 0; }
+.fg label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: .4rem;
+}
+.fg label .hint {
+  font-weight: 400;
+  color: var(--text-hint);
+  font-size: 12px;
+  margin-left: 4px;
+}
+.fg input, .fg textarea, .fg select {
+  width: 100%;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg-soft);
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius-sm);
+  padding: .6rem .85rem;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(29,158,117,.12);
+  background: white;
+}
+.fg textarea { resize: vertical; min-height: 80px; line-height: 1.55; }
+.cc { font-size: 11px; color: var(--text-hint); text-align: right; margin-top: 3px; }
+
+/* TIP */
+.tip {
+  background: var(--green-light);
+  border-left: 3px solid var(--green);
+  padding: .75rem 1rem;
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--green-dark);
+  margin-bottom: 1.25rem;
+  line-height: 1.55;
+}
+.tip strong { font-weight: 500; }
+
+/* NAVIGATION */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.nav-sc { font-size: 13px; color: var(--text-hint); }
+.btn-back {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid var(--border-med);
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background .15s;
+}
+.btn-back:hover { background: var(--bg-soft); }
+.btn-next {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  background: var(--green);
+  border: none;
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background .15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-next:hover { background: var(--green-deep); }
+
+/* SUMMARY */
+.res-card {
+  background: white;
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: .75rem;
+}
+.res-card h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: .75rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.res-card h3 .dot-g {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+}
+.ri { font-size: 13px; color: var(--text-muted); margin-bottom: .35rem; line-height: 1.5; }
+.ri strong { color: var(--text); font-weight: 500; }
+
+.copy-btn {
+  width: 100%;
+  background: var(--green);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: .5rem;
+  transition: background .15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.copy-btn:hover { background: var(--green-deep); }
+
+/* SHARE INFO BOX */
+.share-box {
+  background: var(--bg-soft);
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.25rem;
+}
+.share-box h3 { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 1rem; }
+.share-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding-bottom: .85rem;
+  margin-bottom: .85rem;
+  border-bottom: 1px solid var(--border);
+}
+.share-item:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
+.share-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  font-size: 11px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.share-item div strong { font-size: 13px; font-weight: 500; color: var(--text); display: block; margin-bottom: 2px; }
+.share-item div p { font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+
+/* RESPONSIVE */
+@media(max-width: 600px) {
+  .prob-grid { grid-template-columns: 1fr 1fr; }
+  .svc-grid { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .contact-mock { grid-template-columns: 1fr; }
+  .hero-mock { padding: 1.5rem 1rem; }
+  .sec-title { font-size: 22px; }
+  .top-header { padding: 0 1rem; }
+  .main { padding: 1.5rem 1rem 3rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-header">
+  <div class="logo">Delga<span>medic</span></div>
+  <div class="step-pills" id="pills"></div>
+  <div class="step-label" id="step-label">Sección 1 de 9</div>
+</div>
+
+<div class="main">
+
+<!-- S1: PORTADA -->
+<div class="step active" id="s1">
+  <div class="sec-eyebrow">Sección 1 de 9 — La portada</div>
+  <div class="sec-title">Lo primero que ven sus pacientes</div>
+  <div class="sec-desc">Es como la fachada de su consultorio en internet. En pocos segundos el visitante decide si se queda o se va. Revise el contenido propuesto y corrija lo que necesite.</div>
+
+  <div class="preview-wrap">
+    <div class="preview-label">Así se verá en el sitio web</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="bdot r"></div><div class="bdot y"></div><div class="bdot g"></div>
+        <div class="burl">delgamedic.com</div>
+      </div>
+      <div class="hero-mock">
+        <div class="hero-badge">Especialistas en Obesidad · Endocrinología · Nutrición</div>
+        <div class="zone">
+          <div class="zone-tag">Titular principal</div>
+          <p class="hero-title" id="p-titular">Transforma tu salud con especialistas en obesidad, metabolismo y nutrición clínica</p>
+        </div>
+        <div class="zone" style="margin:.4rem 0">
+          <div class="zone-tag">Descripción breve</div>
+          <p class="hero-sub" id="p-sub">En Delgamedic entendemos que perder peso no se trata simplemente de comer menos. Nuestro enfoque médico integral busca identificar las causas hormonales, metabólicas y nutricionales...</p>
+        </div>
+        <div class="hero-checks">
+          <span class="hck">Tratamientos personalizados</span>
+          <span class="hck">Seguimiento médico especializado</span>
+          <span class="hck">Enfoque basado en evidencia</span>
+          <span class="hck">Atención integral</span>
+        </div>
+        <div class="hero-btns">
+          <button class="btn-primary">Agendar Consulta</button>
+          <button class="btn-secondary">Contactar por WhatsApp</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>¿Para qué sirve esto?</strong> Este es el texto principal que leerá su paciente al entrar al sitio. Debe transmitir en qué se especializa Delgamedic y por qué elegirlos.</div>
+
+  <div class="card">
+    <div class="card-title">Edite el contenido de esta sección</div>
+    <div class="fg">
+      <label>Titular principal <span class="hint">— la frase más importante del sitio</span></label>
+      <textarea id="titular" oninput="sync('p-titular',this.value);charCount(this,'c1')">Transforma tu salud con especialistas en obesidad, metabolismo y nutrición clínica</textarea>
+      <div class="cc" id="c1">82 caracteres</div>
+    </div>
+    <div class="fg">
+      <label>Párrafo introductorio <span class="hint">— descripción de Delgamedic</span></label>
+      <textarea id="subtit" style="min-height:100px" oninput="syncSub(this.value);charCount(this,'c2')">En Delgamedic entendemos que perder peso no se trata simplemente de comer menos. Nuestro enfoque médico integral busca identificar las causas hormonales, metabólicas y nutricionales que pueden estar afectando tu salud para ayudarte a alcanzar resultados reales y sostenibles.</textarea>
+      <div class="cc" id="c2">275 caracteres</div>
+    </div>
+    <div class="fg">
+      <label>Las 4 promesas clave <span class="hint">— una por línea</span></label>
+      <textarea style="min-height:90px">Tratamientos personalizados
+Seguimiento médico especializado
+Enfoque basado en evidencia científica
+Atención integral para mejorar tu calidad de vida</textarea>
+    </div>
+  </div>
+
+  <div class="nav">
+    <span class="nav-sc">1 de 9</span>
+    <button class="btn-next" onclick="go(2)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- S2: CONFIANZA -->
+<div class="step" id="s2">
+  <div class="sec-eyebrow">Sección 2 de 9 — Su compromiso</div>
+  <div class="sec-title">Por qué confiar en Delgamedic</div>
+  <div class="sec-desc">Este bloque aparece justo después de la portada. El paciente que llegó con dudas empieza a confiar aquí. Explica su filosofía antes de hablar de servicios o precios.</div>
+
+  <div class="preview-wrap">
+    <div class="preview-label">Así se verá en el sitio web</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="bdot r"></div><div class="bdot y"></div><div class="bdot g"></div>
+        <div class="burl">delgamedic.com</div>
+      </div>
+      <div class="trust-mock">
+        <p class="mock-section-title" id="p-conftitre">Más que bajar de peso, te ayudamos a recuperar tu bienestar</p>
+        <p class="mock-section-sub" id="p-confsub">Cada paciente es único. Por eso diseñamos tratamientos adaptados a tus necesidades, objetivos y condición médica para lograr cambios duraderos en tu salud.</p>
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M20 7l-8 8-4-4"/></svg></div>
+            Atención médica personalizada
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M20 7l-8 8-4-4"/></svg></div>
+            Diagnóstico integral
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M20 7l-8 8-4-4"/></svg></div>
+            Seguimiento continuo
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M20 7l-8 8-4-4"/></svg></div>
+            Acompañamiento durante todo el proceso
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>¿Qué hace esta sección?</strong> Genera confianza antes de que el paciente vea los servicios. No habla de precios ni de tratamientos específicos — habla de cómo trabajan y qué valores tienen.</div>
+
+  <div class="card">
+    <div class="card-title">Edite el contenido de esta sección</div>
+    <div class="fg">
+      <label>Título de esta sección</label>
+      <input type="text" id="conftitre" value="Más que bajar de peso, te ayudamos a recuperar tu bienestar" oninput="sync('p-conftitre',this.value)">
+    </div>
+    <div class="fg">
+      <label>Párrafo explicativo</label>
+      <textarea id="confsub" oninput="sync('p-confsub',this.value)">Cada paciente es único. Por eso diseñamos tratamientos adaptados a tus necesidades, objetivos y condición médica para lograr cambios duraderos en tu salud.</textarea>
+    </div>
+    <div class="fg">
+      <label>Sus pilares de atención <span class="hint">— uno por línea</span></label>
+      <textarea style="min-height:110px">Atención médica personalizada
+Diagnóstico integral
+Seguimiento continuo
+Educación para hábitos sostenibles
+Acompañamiento durante todo el proceso</textarea>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="btn-back" onclick="go(1)">← Atrás</button>
+    <span class="nav-sc">2 de 9</span>
+    <button class="btn-next" onclick="go(3)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- S3: PROBLEMAS -->
+<div class="step" id="s3">
+  <div class="sec-eyebrow">Sección 3 de 9 — Quién los busca</div>
+  <div class="sec-title">Los problemas que tratan</div>
+  <div class="sec-desc">Cuando el paciente lee esto y se identifica con alguna condición, siente que llegó al lugar correcto. Es una sección clave para conectar con quienes realmente los necesitan.</div>
+
+  <div class="preview-wrap">
+    <div class="preview-label">Así se verá en el sitio web</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="bdot r"></div><div class="bdot y"></div><div class="bdot g"></div>
+        <div class="burl">delgamedic.com</div>
+      </div>
+      <div class="prob-mock">
+        <p class="mock-section-title">¿Te identificas con alguno de estos problemas?</p>
+        <p class="mock-section-sub">Muchas personas realizan dietas durante años sin resultados duraderos porque el verdadero problema puede estar relacionado con factores metabólicos u hormonales.</p>
+        <div class="prob-grid">
+          <div class="prob-card"><strong>Sobrepeso</strong><p>Dificultad para alcanzar y mantener un peso saludable.</p></div>
+          <div class="prob-card"><strong>Obesidad</strong><p>Abordaje médico especializado para mejorar tu calidad de vida.</p></div>
+          <div class="prob-card"><strong>Resistencia a la Insulina</strong><p>Evaluación y manejo integral del metabolismo.</p></div>
+          <div class="prob-card"><strong>Síndrome Metabólico</strong><p>Tratamiento orientado a reducir riesgos.</p></div>
+          <div class="prob-card"><strong>Alteraciones Hormonales</strong><p>Diagnóstico y tratamiento de condiciones que influyen en tu peso.</p></div>
+          <div class="prob-card"><strong>Hígado Graso</strong><p>Evaluación especializada y acompañamiento metabólico.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>¿Hay alguna condición que no está?</strong> Si tratan otras enfermedades o condiciones frecuentes, agréguelas abajo. También puede indicar si hay alguna que prefieran no destacar.</div>
+
+  <div class="card">
+    <div class="card-title">Edite el contenido de esta sección</div>
+    <div class="fg">
+      <label>Condiciones o problemas que tratan <span class="hint">— nombre | descripción breve, uno por línea</span></label>
+      <textarea style="min-height:155px">Sobrepeso | Dificultad para alcanzar y mantener un peso saludable.
+Obesidad | Abordaje médico especializado para mejorar tu salud y calidad de vida.
+Resistencia a la Insulina | Evaluación y manejo integral para optimizar tu metabolismo.
+Síndrome Metabólico | Tratamiento orientado a reducir riesgos y mejorar tu bienestar.
+Alteraciones Hormonales | Diagnóstico y tratamiento de condiciones que influyen en tu peso.
+H�gado Graso | Evaluación especializada y acompañamiento para mejorar tu salud metabólica.</textarea>
+    </div>
+    <div class="fg">
+      <label>¿Alguna condición adicional que quieran agregar?</label>
+      <input type="text" placeholder="Ej: Diabetes tipo 2, Hipotiroidismo, otra...">
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="btn-back" onclick="go(2)">← Atrás</button>
+    <span class="nav-sc">3 de 9</span>
+    <button class="btn-next" onclick="go(4)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- S4: MÉTODO -->
+<div class="step" id="s4">
+  <div class="sec-eyebrow">Sección 4 de 9 — Cómo trabajan</div>
+  <div class="sec-title">El paso a paso de su método</div>
+  <div class="sec-desc">Aquí el paciente entiende exactamente qué va a pasar desde que agenda su consulta hasta el seguimiento. Esto elimina la incertidumbre y genera más confianza.</div>
+
+  <div class="preview-wrap">
+    <div class="preview-label">Así se verá en el sitio web</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="bdot r"></div><div class="bdot y"></div><div class="bdot g"></div>
+        <div class="burl">delgamedic.com</div>
+      </div>
+      <div class="method-mock">
+        <p class="mock-section-title" style="margin-bottom:.85rem">Un tratamiento diseñado para ti</p>
+        <div class="method-steps">
+          <div class="m-step"><div class="m-num">1</div><div><strong>Evaluación Médica Integral</strong><p>Analizamos tu historia clínica, antecedentes, hábitos y estado de salud actual.</p></div></div>
+          <div class="m-step"><div class="m-num">2</div><div><strong>Diagnóstico Especializado</strong><p>Identificamos factores hormonales, metabólicos y nutricionales que pueden estar afectando tus resultados.</p></div></div>
+          <div class="m-step"><div class="m-num">3</div><div><strong>Plan Personalizado</strong><p>Diseñamos una estrategia adaptada a tus objetivos y necesidades específicas.</p></div></div>
+          <div class="m-step"><div class="m-num">4</div><div><strong>Seguimiento Continuo</strong><p>Acompañamos tu evolución realizando ajustes para maximizar resultados a largo plazo.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>¿Este proceso refleja cómo atienden?</strong> Si hay un paso que falta, que cambia de nombre, o que quieren explicar de otra manera, edítenlo abajo.</div>
+
+  <div class="card">
+    <div class="card-title">Edite el contenido de esta sección</div>
+    <div class="fg">
+      <label>Los pasos de su método <span class="hint">— nombre | descripción, uno por línea</span></label>
+      <textarea style="min-height:130px">Evaluación Médica Integral | Analizamos tu historia clínica, antecedentes, hábitos y estado de salud.
+Diagnóstico Especializado | Identificamos factores hormonales, metabólicos y nutricionales que pueden estar afectando tus resultados.
+Plan Personalizado | Diseñamos una estrategia adaptada a tus objetivos y necesidades específicas.
+Seguimiento Continuo | Acompañamos tu evolución realizando ajustes para maximizar resultados a largo plazo.</textarea>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="btn-back" onclick="go(3)">← Atrás</button>
+    <span class="nav-sc">4 de 9</span>
+    <button class="btn-next" onclick="go(5)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- S5: SERVICIOS -->
+<div class="step" id="s5">
+  <div class="sec-eyebrow">Sección 5 de 9 — Lo que ofrecen</div>
+  <div class="sec-title">Sus servicios</div>
+  <div class="sec-desc">Una vista clara de todo lo que ofrece Delgamedic. Cada tarjeta muestra un servicio con su nombre y descripción breve.</div>
+
+  <div class="preview-wrap">
+    <div class="preview-label">Así se verá en el sitio web</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="bdot r"></div><div class="bdot y"></div><div class="bdot g"></div>
+        <div class="burl">delgamedic.com</div>
+      </div>
+      <div class="svc-mock">
+        <p class="mock-section-title" style="margin-bottom:.85rem">Nuestros Servicios</p>
+        <div class="svc-grid">
+          <div class="svc-card"><strong>Tratamiento Integral de Obesidad</strong><p>Abordaje médico especializado para lograr una pérdida de peso saludable y sostenible.</p></div>
+          <div class="svc-card"><strong>Programa Médico de Adelgazamiento</strong><p>Planes personalizados enfocados en mejorar la composición corporal y la salud metabólica.</p></div>
+          <div class="svc-card"><strong>Evaluación Endocrinológica</strong><p>Diagnóstico y tratamiento de alteraciones hormonales relacionadas con el peso.</p></div>
+          <div class="svc-card"><strong>Salud Metabólica</strong><p>Manejo integral del síndrome metabólico y resistencia a la insulina.</p></div>
+          <div class="svc-card"><strong>Nutrología Clínica</strong><p>Evaluación nutricional avanzada y estrategias basadas en evidencia científica.</p></div>
+          <div class="svc-card"><strong>Seguimiento Personalizado</strong><p>Control continuo para optimizar resultados y fortalecer hábitos saludables.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>¿Hay algún servicio que agregar, quitar o redescribir?</strong> Si un nombre no les representa bien, o quieren agregar uno nuevo, modifíquenlo en el campo de abajo.</div>
+
+  <div class="card">
+    <div class="card-title">Edite el contenido de esta sección</div>
+    <div class="fg">
+      <label>Servicios <span class="hint">— nombre | descripción breve, uno por línea</span></label>
+      <textarea style="min-height:155px">Tratamiento Integral de Obesidad | Abordaje médico especializado para lograr una pérdida de peso saludable y sostenible.
+Programa Médico de Adelgazamiento | Planes personalizados enfocados en mejorar la composición corporal y la salud metabólica.
+Evaluación Endocrinológica | Diagnóstico y tratamiento de alteraciones hormonales relacionadas con el peso.
+Salud Metabólica | Manejo integral del síndrome metabólico y resistencia a la insulina.
+Nutrología Clínica | Evaluación nutricional avanzada y estrategias basadas en evidencia científica.
+Seguimiento Personalizado | Control continuo para optimizar resultados y fortalecer hábitos saludables.</textarea>
+    </div>
+    <div class="fg">
+      <label>¿Muestran precios en el sitio?</label>
+      <select>
+        <option>No, prefiero que los pacientes contacten para consultar</option>
+        <option>Sí, quiero mostrar precios o rangos orientativos</option>
+        <option>Solo mostrar el precio de la consulta inicial</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="btn-back" onclick="go(4)">← Atrás</button>
+    <span class="nav-sc">5 de 9</span>
+    <button class="btn-next" onclick="go(6)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- S6: EQUIPO -->
+<div class="step" id="s6">
+  <div class="sec-eyebrow">Sección 6 de 9 — Los especialistas</div>
+  <div class="sec-title">El equipo médico</div>
+  <div class="sec-desc">Los pacientes quieren saber quiénes los van a atender. Esta sección presenta a los doctores con su formación y especialidad. Una foto real aquí marca una gran diferencia.</div>
+
+  <div class="preview-wrap">
+    <div class="preview-label">Así se verá en el sitio web</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="bdot r"></div><div class="bdot y"></div><div class="bdot g"></div>
+        <div class="burl">delgamedic.com</div>
+      </div>
+      <div class="team-mock">
+        <div class="doc-card">
+          <div class="doc-avatar">PE</div>
+          <div class="doc-info">
+            <strong>Dr. Paulo Enrique Peinado</strong>
+            <span class="spec">Médico Endocrinólogo · Especialista en Obesidad y Síndrome Metabólico</span>
+            <p>Graduado de la UCB con formación en Endocrinología y Metabología por la USP Brasil y el Hospital das Clínicas. Especialización en Obesidad y Síndrome Metabólico.</p>
+          </div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-avatar">LH</div>
+          <div class="doc-info">
+            <strong>Dra. Leslie Heredia</strong>
+            <span class="spec">Médica Internista y Nutrióloga · Especialista en Adelgazamiento</span>
+            <p>Graduada de la UCB, especialista en Medicina Interna formada en el Hospital Japonés de Santa Cruz, con posgrado en Nutrología por IPEMED São Paulo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>Las iniciales se reemplazarán por sus fotos.</strong> Una fotografía profesional genera mucho más confianza que un avatar. ¿Tienen fotos disponibles de los dos médicos?</div>
+
+  <div class="card">
+    <div class="card-title">Información del equipo</div>
+    <div class="fg">
+      <label>¿Tienen fotos profesionales de los médicos?</label>
+      <select id="sel-fotos">
+        <option value="ambos">Sí, tenemos fotos de los dos médicos</option>
+        <option value="uno">Solo de uno de los médicos</option>
+        <option value="no">Todavía no, las vamos a conseguir</option>
+        <option value="ayuda">Necesito orientación para obtenerlas</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label>Descripción del Dr. Paulo Enrique Peinado <span class="hint">— puede ajustar el texto</span></label>
+      <textarea style="min-height:100px">Médico graduado de la Universidad Católica Boliviana con formación especializada en Endocrinología y Metabología por la Universidad de São Paulo (USP), Brasil y el Hospital das Clínicas. Cuenta además con especialización en Obesidad y Síndrome Metabólico. Su enfoque está orientado al diagnóstico y tratamiento de enfermedades metabólicas, obesidad y alteraciones hormonales.</textarea>
+    </div>
+    <div class="fg">
+      <label>Descripción de la Dra. Leslie Heredia <span class="hint">— puede ajustar el texto</span></label>
+      <textarea style="min-height:100px">Médica graduada de la Universidad Católica Boliviana, especialista en Medicina Interna formada en el Hospital Japonés de Santa Cruz y con posgrado en Nutrología por IPEMED São Paulo, Brasil. Su práctica se enfoca en nutrición clínica, optimización metabólica y estrategias de adelgazamiento personalizadas orientadas al bienestar integral.</textarea>
+    </div>
+    <div class="fg">
+      <label>¿Hay algún médico adicional en el equipo?</label>
+      <input type="text" placeholder="Nombre completo, especialidad...">
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="btn-back" onclick="go(5)">← Atrás</button>
+    <span class="nav-sc">6 de 9</span>
+    <button class="btn-next" onclick="go(7)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- S7: FAQ -->
+<div class="step" id="s7">
+  <div class="sec-eyebrow">Sección 7 de 9 — Preguntas frecuentes</div>
+  <div class="sec-title">Lo que sus pacientes siempre preguntan</div>
+  <div class="sec-desc">Esta sección responde de antemano las dudas más comunes. Reduce llamadas repetitivas y le da al paciente la seguridad que necesita para agendar su consulta.</div>
+
+  <div class="preview-wrap">
+    <div class="preview-label">Así se verá en el sitio web</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="bdot r"></div><div class="bdot y"></div><div class="bdot g"></div>
+        <div class="burl">delgamedic.com</div>
+      </div>
+      <div class="faq-mock">
+        <p class="mock-section-title" style="margin-bottom:.75rem">Preguntas frecuentes</p>
+        <div class="faq-item"><strong>¿Necesito estudios antes de asistir a mi consulta?</strong><p>No necesariamente. Durante la evaluación inicial nuestros especialistas determinarán si es necesario solicitar estudios complementarios.</p></div>
+        <div class="faq-item"><strong>¿Los tratamientos son personalizados?</strong><p>Sí. Cada paciente recibe una evaluación integral y un plan adaptado a sus necesidades específicas.</p></div>
+        <div class="faq-item"><strong>¿Cuánto peso puedo perder?</strong><p>Los resultados varían según cada persona. Nuestro objetivo es lograr una reducción de peso saludable, segura y sostenible.</p></div>
+        <div class="faq-item"><strong>¿Atienden pacientes con diabetes o resistencia a la insulina?</strong><p>Sí. Contamos con experiencia en el manejo de diversas condiciones metabólicas relacionadas con el peso.</p></div>
+        <div class="faq-item"><strong>¿Necesito seguir dietas estrictas?</strong><p>Nuestro enfoque busca generar cambios sostenibles y personalizados, evitando soluciones extremas o poco realistas.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>¿Hay preguntas que sus pacientes hacen por teléfono antes de venir?</strong> Agréguelas abajo. Cuantas más dudas resuelva el sitio, menos llamadas innecesarias recibirán.</div>
+
+  <div class="card">
+    <div class="card-title">Edite el contenido de esta sección</div>
+    <div class="fg">
+      <label>Preguntas frecuentes <span class="hint">— pregunta | respuesta, una por línea</span></label>
+      <textarea style="min-height:165px">¿Necesito estudios antes de asistir a mi consulta? | No necesariamente. Durante la evaluación inicial nuestros especialistas determinarán si es necesario solicitar estudios complementarios.
+¿Los tratamientos son personalizados? | Sí. Cada paciente recibe una evaluación integral y un plan adaptado a sus necesidades específicas.
+¿Cuánto peso puedo perder? | Los resultados varían. Buscamos una reducción de peso saludable, segura y sostenible.
+¿Atienden pacientes con diabetes o resistencia a la insulina? | Sí. Contamos con experiencia en el manejo de condiciones metabólicas.
+¿Necesito seguir dietas estrictas? | Nuestro enfoque busca cambios sostenibles, evitando soluciones extremas.</textarea>
+    </div>
+    <div class="fg">
+      <label>¿Hay alguna pregunta adicional frecuente que quieran incluir?</label>
+      <textarea placeholder="Pregunta | Respuesta" style="min-height:60px"></textarea>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="btn-back" onclick="go(6)">← Atrás</button>
+    <span class="nav-sc">7 de 9</span>
+    <button class="btn-next" onclick="go(8)">Siguiente →</button>
+  </div>
+</div>
+
+<!-- S8: CONTACTO -->
+<div class="step" id="s8">
+  <div class="sec-eyebrow">Sección 8 de 9 — Cierre y contacto</div>
+  <div class="sec-title">El mensaje final y sus datos</div>
+  <div class="sec-desc">El cierre del sitio tiene dos partes: un mensaje invitando a agendar, y los datos de contacto y ubicación. Verifique que todo esté correcto.</div>
+
+  <div class="preview-wrap">
+    <div class="preview-label">Así se verá en el sitio web</div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="bdot r"></div><div class="bdot y"></div><div class="bdot g"></div>
+        <div class="burl">delgamedic.com</div>
+      </div>
+      <div class="cta-mock">
+        <h3>Da el primer paso hacia una vida más saludable</h3>
+        <p>Permítenos ayudarte a comprender tu metabolismo, mejorar tu salud y alcanzar tus objetivos con el respaldo de especialistas comprometidos con tu bienestar.</p>
+        <div class="hero-btns">
+          <button class="btn-primary">Contactar por WhatsApp</button>
+        </div>
+      </div>
+      <div class="contact-mock">
+        <div class="contact-item">
+          <strong>
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Dirección
+          </strong>
+          <p>Av. Alemana 2do anillo, calle Limón esq. Toborochi — Santa Cruz de la Sierra, Bolivia</p>
+        </div>
+        <div class="contact-item">
+          <strong>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            Horarios
+          </strong>
+          <p>Lun–Vie: 09:30–13:30 y 16:00–20:00</p>
+        </div>
+        <div class="contact-item">
+          <strong>
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.06 1.16 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            WhatsApp
+          </strong>
+          <p>+591 77373681</p>
+        </div>
+        <div class="contact-item">
+          <strong>
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            Email
+          </strong>
+          <p id="p-email">¿Tienen correo de contacto?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>Verifique que los datos estén correctos.</strong> Un número de WhatsApp equivocado o un horario desactualizado puede hacerles perder pacientes.</div>
+
+  <div class="card">
+    <div class="card-title">Datos de contacto</div>
+    <div class="fg">
+      <label>Dirección completa</label>
+      <input type="text" value="Av. Alemana 2do anillo, calle Limón esquina Toborochi — Santa Cruz de la Sierra, Bolivia">
+    </div>
+    <div class="fg">
+      <label>Número de WhatsApp</label>
+      <input type="text" value="+591 77373681">
+    </div>
+    <div class="fg">
+      <label>Horarios de atención</label>
+      <textarea style="min-height:65px">Lunes a Viernes
+09:30 – 13:30
+16:00 – 20:00</textarea>
+    </div>
+    <div class="fg">
+      <label>¿Tienen correo electrónico de contacto?</label>
+      <input type="text" id="email-input" placeholder="Ej: contacto@delgamedic.com" oninput="sync('p-email', this.value || '¿Tienen correo de contacto?')">
+    </div>
+    <div class="fg">
+      <label>¿Tienen redes sociales activas?</label>
+      <input type="text" placeholder="Ej: Instagram @delgamedic, Facebook Delgamedic...">
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:.75rem">
+    <div class="card-title">Mensaje de cierre</div>
+    <div class="fg">
+      <label>Texto del mensaje final <span class="hint">— invitación a agendar</span></label>
+      <textarea style="min-height:90px">Da el primer paso hacia una vida más saludable. Permítenos ayudarte a comprender tu metabolismo, mejorar tu salud y alcanzar tus objetivos con el respaldo de especialistas comprometidos con tu bienestar.</textarea>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button class="btn-back" onclick="go(7)">← Atrás</button>
+    <span class="nav-sc">8 de 9</span>
+    <button class="btn-next" onclick="go(9)">Ver resumen →</button>
+  </div>
+</div>
+
+<!-- S9: RESUMEN -->
+<div class="step" id="s9">
+  <div class="sec-eyebrow">Sección 9 de 9 — Revisión completada</div>
+  <div class="sec-title">¡Gracias por completar el formulario!</div>
+  <div class="sec-desc">A continuación encontrará un resumen de los cambios y observaciones. Puede copiarlo y enviarlo de vuelta a su equipo de desarrollo.</div>
+
+  <div id="res-container"></div>
+
+  <button class="copy-btn" onclick="copiar()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+    Copiar todo el resumen
+  </button>
+
+  <div class="nav">
+    <button class="btn-back" onclick="go(8)">← Volver a editar</button>
+    <span class="nav-sc">9 de 9</span>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+var TOTAL = 9;
+
+function initPills() {
+  var c = document.getElementById('pills');
+  for (var i = 1; i <= TOTAL; i++) {
+    var d = document.createElement('div');
+    d.className = 'pill' + (i === 1 ? ' active' : '');
+    d.setAttribute('data-n', i);
+    d.onclick = (function(n){ return function(){ go(n); }; })(i);
+    c.appendChild(d);
+  }
+}
+
+function go(n) {
+  document.querySelectorAll('.step').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById('s' + n).classList.add('active');
+  document.querySelectorAll('.pill').forEach(function(p, i) {
+    p.className = 'pill' + (i + 1 < n ? ' done' : i + 1 === n ? ' active' : '');
+  });
+  document.getElementById('step-label').textContent = 'Sección ' + n + ' de ' + TOTAL;
+  if (n === 9) buildRes();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function sync(id, val) {
+  var el = document.getElementById(id);
+  if (el) el.textContent = val || '';
+}
+
+function syncSub(val) {
+  var el = document.getElementById('p-sub');
+  if (el) el.textContent = (val || '').substring(0, 200) + (val.length > 200 ? '...' : '');
+}
+
+function charCount(el, id) {
+  var d = document.getElementById(id);
+  if (d) d.textContent = el.value.length + ' caracteres';
+}
+
+function g(id) { return (document.getElementById(id) || {}).value || '(no completado)'; }
+
+function buildRes() {
+  var fmap = {
+    'ambos': 'Sí, tienen fotos de ambos médicos',
+    'uno': 'Solo de un médico',
+    'no': 'Todavía no disponibles — se conseguirán más adelante',
+    'ayuda': 'Necesitan orientación para obtenerlas'
+  };
+  var fotos = document.getElementById('sel-fotos') ? document.getElementById('sel-fotos').value : '—';
+  var html = '';
+  var sections = [
+    { icon: '🟢', title: 'Portada (primera impresión)', items: [
+      ['Titular principal', g('titular')],
+      ['Descripción introductoria', g('subtit')]
+    ]},
+    { icon: '🤝', title: 'Sección de confianza', items: [
+      ['Título', g('conftitre')],
+      ['Párrafo', g('confsub')]
+    ]},
+    { icon: '📸', title: 'Equipo médico — fotos', items: [
+      ['Estado de fotos', fmap[fotos] || fotos]
+    ]},
+    { icon: '📧', title: 'Contacto', items: [
+      ['Email de contacto', g('email-input') || '(no indicado)']
+    ]}
+  ];
+  sections.forEach(function(sec) {
+    html += '<div class="res-card"><h3><div class="dot-g"></div>' + sec.icon + ' ' + sec.title + '</h3>';
+    sec.items.forEach(function(item) {
+      var val = item[1];
+      var display = val.length > 140 ? val.substring(0, 140) + '...' : val;
+      html += '<div class="ri">' + item[0] + ': <strong>' + display + '</strong></div>';
+    });
+    html += '</div>';
+  });
+  document.getElementById('res-container').innerHTML = html;
+}
+
+function copiar() {
+  var txt = 'REVISIÓN DE CONTENIDO — DELGAMEDIC\n' + '='.repeat(36) + '\n\n';
+  txt += 'SECCIÓN 1: PORTADA\n' + '-'.repeat(22) + '\n';
+  txt += 'Titular: ' + g('titular') + '\n';
+  txt += 'Descripción: ' + g('subtit') + '\n\n';
+  txt += 'SECCIÓN 2: COMPROMISO\n' + '-'.repeat(22) + '\n';
+  txt += 'Título: ' + g('conftitre') + '\n';
+  txt += 'Párrafo: ' + g('confsub') + '\n\n';
+  txt += 'SECCIÓN 6: EQUIPO MÉDICO\n' + '-'.repeat(22) + '\n';
+  var fmap = {'ambos':'Sí, tienen fotos de los dos','uno':'Solo de un médico','no':'No disponibles aún','ayuda':'Necesitan orientación'};
+  var fotos = document.getElementById('sel-fotos') ? document.getElementById('sel-fotos').value : '—';
+  txt += 'Fotos disponibles: ' + (fmap[fotos] || fotos) + '\n\n';
+  txt += 'SECCIÓN 8: CONTACTO\n' + '-'.repeat(22) + '\n';
+  txt += 'Email: ' + (g('email-input') || 'no indicado') + '\n\n';
+  txt += 'Formulario completado: ' + new Date().toLocaleDateString('es-BO', {day:'2-digit',month:'long',year:'numeric'}) + '\n';
+  navigator.clipboard.writeText(txt).then(function() {
+    var btn = document.querySelector('.copy-btn');
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> ¡Copiado correctamente!';
+    setTimeout(function() {
+      btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar todo el resumen';
+    }, 2500);
+  });
+}
+
+initPills();
+document.getElementById('c1').textContent = document.getElementById('titular').value.length + ' caracteres';
+document.getElementById('c2').textContent = document.getElementById('subtit').value.length + ' caracteres';
+</script>
+</body>
+</html>
