@@ -1,6 +1,7 @@
 // DelgaMedic — App root
 import React, { useState } from 'react'
 import './styles.css'
+import './responsive.css'
 import './data.js'
 
 import { Header, Footer, BookingModal, useReveal } from './chrome.jsx'
